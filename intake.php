@@ -34,7 +34,7 @@
 
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav justify-content-end">
-              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li> 
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
               <li class="nav-item"><a class="nav-link" href="committees.php">Committees</a>
               <li class="nav-item"><a class="nav-link" href="speaker.php">Speakers</a>
               <li class="nav-item"><a class="nav-link" href="hotel.php">Hotel</a>
@@ -43,28 +43,28 @@
                 <a href="alljobs.php" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Attendees</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="students.php">Students</a> 
-                  <li class="nav-item"><a class="nav-link" href="professionals.php">Professionals</a>   
+                  <li class="nav-item"><a class="nav-link" href="students.php">Students</a>
+                  <li class="nav-item"><a class="nav-link" href="professionals.php">Professionals</a>
                   <li class="nav-item"><a class="nav-link" href="sponsors.php">Sponsors</a></li>
-                </ul>      
+                </ul>
               <li class="nav-item submenu dropdown">
                 <a href="alljobs.php" class="nav-link dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Jobs</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item active"><a class="nav-link" href="alljobs.php">All Jobs</a> 
-                  <li class="nav-item"><a class="nav-link" href="jobs.php">Search Jobs</a>       
-                </ul>      
+                  <li class="nav-item active"><a class="nav-link" href="alljobs.php">All Jobs</a>
+                  <li class="nav-item"><a class="nav-link" href="jobs.php">Search Jobs</a>
+                </ul>
               <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Admin</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="add.php">Add Student</a> 
-                  <li class="nav-item"><a class="nav-link" href="addProfessional.php">Add Professional</a>   
-                  <li class="nav-item"><a class="nav-link" href="addSponsor.php">Add Sponsor</a>   
-                  <li class="nav-item"><a class="nav-link" href="deleteSponsor.php">Delete Sponsor</a>                  
-                  <li class="nav-item"><a class="nav-link" href="switch.php">Switch Session Day/Time</a>   
+                  <li class="nav-item"><a class="nav-link" href="add.php">Add Student</a>
+                  <li class="nav-item"><a class="nav-link" href="addProfessional.php">Add Professional</a>
+                  <li class="nav-item"><a class="nav-link" href="addSponsor.php">Add Sponsor</a>
+                  <li class="nav-item"><a class="nav-link" href="deleteSponsor.php">Delete Sponsor</a>
+                  <li class="nav-item"><a class="nav-link" href="switch.php">Switch Session Day/Time</a>
                   <li class="nav-item"><a class="nav-link" href="switchLoc.php">Switch Session Location</a>
-                  <li class="nav-item"><a class="nav-link" href="switchAll.php">Switch Session Day/Time and Location</a>    
+                  <li class="nav-item"><a class="nav-link" href="switchAll.php">Switch Session Day/Time and Location</a>
                   <li class="nav-item"><a class="nav-link" href="intake.php">Total Intake</a></li>
                 </ul>
 							</li>
@@ -72,14 +72,14 @@
             <ul class="nav-right text-center text-lg-right py-4 py-lg-0">
               <li><a href="contact.html">Contact Us</a></li>
             </ul>
-          </div> 
+          </div>
         </div>
       </nav>
     </div>
   </header>
   <!--================Header Menu Area =================-->
 
-  
+
   <!--================Hero Banner Area Start =================-->
   <section class="hero-banner hero-banner-sm">
     <div class="container text-center">
@@ -113,35 +113,41 @@
         $pdo = new PDO($dsn,$username,$password,$options);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e){
-        die ("Error: Could not connect. " . $e->getMessage)
+        die ("Error: Could not connect. " . $e->getMessage);
     }
     try{
-        $studentRows = $pdo->query('SELECT count(*) FROM students')->fetchColumn(); 
-        echo $studentRows;
-        $professionalRows = $pdo->query('SELECT count(*) FROM professionals')->fetchColumn();
-        echo $professionalRows;
-        $platinumSponsorRows = $pdo->query('SELECT count(*) FROM sponsor WHERE financial_contribution = 10000 ')
-        echo $platinumSponsorRows
-        $goldSponsorRows = $pdo->query('SELECT count(*) FROM sponsor WHERE financial_contribution = 5000 ')
-        echo $goldSponsorRows
-        $silverSponsorRows = $pdo->query('SELECT count(*) FROM sponsor WHERE financial_contribution = 3000 ')
-        echo $silverSponsorRows
-        $bronzeSponsorRows = $pdo->query('SELECT count(*) FROM sponsor WHERE financial_contribution = 1000 ')
-        echo $bronzeSponsorRows
-        
-           
-        echo "Total Student Earnings: $" . ($studentRows * 50)
-        echo "Total Professional Earnings: $" . ($professionalRows * 100)
-        echo "Total Platinum Earnings: $" . ($platinumSponsorRows * 10000)
-        echo "Total Gold Earnings: $" . ($goldSponsorRows * 5000)
-        echo "Total Silver Earnings: $" . ($silverSponsorRows * 3000)
-        echo "Total Bronze Earnings: $" . ($bronzeSponsorRows * 1000)
-        echo "Total Intake: $" . (($studentRows * 50) + ($professionalRows * 100) + ($platinumSponsorRows * 10000) + ($goldSponsorRows * 5000) + ($silverSponsorRows * 3000) + ($bronzeSponsorRows * 1000))
-    }
-        
-        
+        $studentRows = $pdo->query('SELECT count(*) FROM student')->fetchColumn();
+        echo "Number of Students: ".$studentRows;
+        echo "<br>";
+        $professionalRows = $pdo->query('SELECT count(*) FROM professional')->fetchColumn();
+        echo "Number of Professionals: ".$professionalRows." \n";
+        echo "<br>";
+        $platinumSponsorRows = $pdo->query('SELECT count(*) FROM sponsor WHERE financial_contribution = 10000 ')->fetchColumn();
+        echo $platinumSponsorRows;
+        echo "<br>";
+        $goldSponsorRows = @$pdo->query('SELECT count(*) FROM sponsor WHERE financial_contribution = 5000 ')->fetchColumn;
+        echo $goldSponsorRows;
+        echo "<br>";
+        $silverSponsorRows = @$pdo->query('SELECT count(*) FROM sponsor WHERE financial_contribution = 3000 ')->fetchColumn;
+        echo $silverSponsorRows;
+        echo "<br>";
+        $bronzeSponsorRows = @$pdo->query('SELECT count(*) FROM sponsor WHERE financial_contribution = 1000 ')->fetchColumn;
+        echo $bronzeSponsorRows;
+        echo "<br>";
+}finally{
+
+        echo "Total Student Earnings: $" . ($studentRows * 50);
+        echo "Total Professional Earnings: $" . ($professionalRows * 100);
+        echo "Total Platinum Earnings: $" . ($platinumSponsorRows * 10000);
+        echo "Total Gold Earnings: $" . ($goldSponsorRows * 5000);
+        echo "Total Silver Earnings: $" . ($silverSponsorRows * 3000);
+        echo "Total Bronze Earnings: $" . ($bronzeSponsorRows * 1000);
+        echo "Total Intake: $" . (($studentRows * 50) + ($professionalRows * 100) + ($platinumSponsorRows * 10000) + ($goldSponsorRows * 5000) + ($silverSponsorRows * 3000) + ($bronzeSponsorRows * 1000));
+}
+
+
     ?>
-        
+
     </div>
   </section>
   <!--================ Join section End =================-->
@@ -178,27 +184,27 @@
                   <li><a href="jobs.php">Jobs</a></li>
                   <li><a href="contact.html">Contact</a></li>
                 </ul>
-              </div>										
-            </div>							
+              </div>
+            </div>
           </div>
-        </div>							
+        </div>
         <div class="col-lg-3  col-md-6 col-sm-6">
           <div class="single-footer-widget">
             <h6>Newsletter</h6>
             <p>
-              Join to receive to stay up-to-date on the latest news a							
-            </p>								
+              Join to receive to stay up-to-date on the latest news a
+            </p>
             <div id="mc_embed_signup">
               <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscription relative">
                 <div class="input-group d-flex flex-row">
                   <input name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" required="" type="email">
-                  <button class="btn bb-btn"><span class="lnr lnr-location"></span></button>		
-                </div>									
+                  <button class="btn bb-btn"><span class="lnr lnr-location"></span></button>
+                </div>
                 <div class="mt-10 info"></div>
               </form>
             </div>
           </div>
-        </div>						
+        </div>
       </div>
     </div>
     <div class="footer-bottom">
@@ -227,7 +233,7 @@
   <script src="js/jquery.ajaxchimp.min.js"></script>
   <script src="js/mail-script.js"></script>
   <script src="js/countdown.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>	
+  <script src="js/jquery.magnific-popup.min.js"></script>
   <script src="js/main.js"></script>
 
 
