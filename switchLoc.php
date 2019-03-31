@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>QICC - Students</title>
+  <title>QICC - Change Session</title>
 	<link rel="icon" href="img/Fevicon.png" type="image/png">
 
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
@@ -16,12 +16,13 @@
   <link rel="stylesheet" href="css/magnific-popup.css">
   <link rel="stylesheet" href="vendors/flat-icon/font/flaticon.css">
 
+
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <!--================ Header Menu Area start =================-->
-      <header class="header_area">
+          <header class="header_area">
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container box_1620">
@@ -82,11 +83,11 @@
   <!--================Hero Banner Area Start =================-->
   <section class="hero-banner hero-banner-sm">
     <div class="container text-center">
-      <h2>View All Students</h2>
+      <h2>Edit a Session's Location</h2>
       <nav aria-label="breadcrumb" class="banner-breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Attendees</li>
+          <li class="breadcrumb-item active" aria-current="page">Admin</li>
         </ol>
       </nav>
     </div>
@@ -95,64 +96,54 @@
 
 
 
-
   <!--================ Join section Start =================-->
   <section class="section-margin">
     <div class="container">
       <div class="section-intro text-center pb-90px">
-        <p class="section-intro__title">Below is a table of all the student's attending</p>
-        <h2 class="primary-text">View All Students</h2>
+        <p class="section-intro__title">Enter the session's new info below</p>
+        <h2 class="primary-text">Switch a Session's Location</h2>
         <img src="img/home/section-style.png" alt="">
       </div>
     <br>
     <br>
     <?php
-    /* Attempt MySQL server connection. Assuming you are running MySQL
-    server with default setting (user 'root' with no password) */
-    require "./config.php";
-    try{
-        $pdo = new PDO($dsn,$username,$password,$options);
-        // Set the PDO error mode to exception
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch(PDOException $e){
-        die("ERROR: Could not connect. " . $e->getMessage());
-    }
+$new_loc = @$_POST['loc'];
+$e_name = @$_POST['name'];
+if (isset($_POST['submit'])){
+  require './config.php';
+  try{
+    $conn = new PDO($dsn, $username, $password, $options);
+    $query = "UPDATE event SET room_num=:loc
+    WHERE event_title=:name";
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':loc', $new_loc);
+    $stmt->bindParam(':name', $e_name);
+    $stmt->execute();
+  }catch(PDOException $error) {
+      echo $query . "<br>" . $error->getMessage();
+  }
+}
 
-    // Attempt select query execution
-    try{
-        $sql = "SELECT name FROM student";   
-        $result = $pdo->query($sql);
-        if($result->rowCount() > 0){
-            echo "<table>";
-                echo "<tr>";
-                    echo "<th>name</th>";
-                echo "</tr>";
-            while($row = $result->fetch()){
-                echo "<tr>";
-                    echo "<td>" . $row['name'] . "</td>";
-                echo "</tr>";
-            }
-            echo "</table>";
-            // Free result set
-            unset($result);
-        } else{
-            echo "No records matching your query were found.";
-        }
-    } catch(PDOException $e){
-        die("ERROR: Could not able to execute $sql. " . $e->getMessage());
-    }
 
-    // Close connection
-    unset($pdo);
-    ?>
+?>
 
+	<style type="text/css">
+	<?php include './newstyle.css' ?>
+  </style>
+  <form method="post">
+    <label for="name">Event Name</label>
+    <input type="text" name="name" id="name">
+    <label for="loc">New Location</label>
+    <input type="text" name="loc" id="loc">
+    <input type="submit" name="submit" value="submit">
+  </form>
     </div>
   </section>
   <!--================ Join section End =================-->
 
 
   <!-- ================ start footer Area ================= -->
- <footer class="footer-area">
+<footer class="footer-area">
     <div class="container">
       <div class="row">
         <div class="col-lg-3  col-md-6 col-sm-6">
@@ -170,9 +161,9 @@
               <div class="col">
                 <ul>
                   <li><a href="index.html">Home</a></li>
+                  <li><a href="about.html">About</a></li>
                   <li><a href="committees.php">Committees</a></li>
                   <li><a href="speakers.php">Speakers</a></li>
-                  <li><a href="students.php">Attendees</a></li>
                 </ul>
               </div>
               <div class="col">
@@ -219,6 +210,7 @@
         </div>
       </div>
     </div>
+  </footer>
   <!-- ================ End footer Area ================= -->
 
 
