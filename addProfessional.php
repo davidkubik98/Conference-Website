@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
   <link rel="stylesheet" href="css/magnific-popup.css">
   <link rel="stylesheet" href="vendors/flat-icon/font/flaticon.css">
-  
+
 
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -35,7 +35,7 @@
 
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav justify-content-end">
-              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li> 
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
               <li class="nav-item"><a class="nav-link" href="committees.php">Committees</a>
               <li class="nav-item"><a class="nav-link" href="speaker.php">Speakers</a>
               <li class="nav-item"><a class="nav-link" href="hotel.php">Hotel</a>
@@ -44,42 +44,42 @@
                 <a href="alljobs.php" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Attendees</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="students.php">Students</a> 
-                  <li class="nav-item"><a class="nav-link" href="professionals.php">Professionals</a>   
+                  <li class="nav-item"><a class="nav-link" href="students.php">Students</a>
+                  <li class="nav-item"><a class="nav-link" href="professionals.php">Professionals</a>
                   <li class="nav-item"><a class="nav-link" href="sponsors.php">Sponsors</a></li>
-                </ul>      
+                </ul>
               <li class="nav-item submenu dropdown">
                 <a href="alljobs.php" class="nav-link dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Jobs</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item active"><a class="nav-link" href="alljobs.php">All Jobs</a> 
-                  <li class="nav-item"><a class="nav-link" href="jobs.php">Search Jobs</a>       
-                </ul>      
+                  <li class="nav-item active"><a class="nav-link" href="alljobs.php">All Jobs</a>
+                  <li class="nav-item"><a class="nav-link" href="jobs.php">Search Jobs</a>
+                </ul>
               <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Admin</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="add.php">Add Student</a> 
-                  <li class="nav-item"><a class="nav-link" href="addProfessional.php">Add Professional</a>   
-                  <li class="nav-item"><a class="nav-link" href="addSponsor.php">Add Sponsor</a>   
-                  <li class="nav-item"><a class="nav-link" href="deleteSponsor.php">Delete Sponsor</a>                  
-                  <li class="nav-item"><a class="nav-link" href="switch.php">Switch Session Day/Time</a>   
+                  <li class="nav-item"><a class="nav-link" href="add.php">Add Student</a>
+                  <li class="nav-item"><a class="nav-link" href="addProfessional.php">Add Professional</a>
+                  <li class="nav-item"><a class="nav-link" href="addSponsor.php">Add Sponsor</a>
+                  <li class="nav-item"><a class="nav-link" href="deleteSponsor.php">Delete Sponsor</a>
+                  <li class="nav-item"><a class="nav-link" href="switch.php">Switch Session Day/Time</a>
                   <li class="nav-item"><a class="nav-link" href="switchLoc.php">Switch Session Location</a>
-                  <li class="nav-item"><a class="nav-link" href="switchAll.php">Switch Session Day/Time and Location</a>       
+                  <li class="nav-item"><a class="nav-link" href="switchAll.php">Switch Session Day/Time and Location</a>
                 </ul>
 							</li>
                 </ul>
             <ul class="nav-right text-center text-lg-right py-4 py-lg-0">
               <li><a href="contact.html">Contact Us</a></li>
             </ul>
-          </div> 
+          </div>
         </div>
       </nav>
     </div>
   </header>
   <!--================Header Menu Area =================-->
 
-  
+
   <!--================Hero Banner Area Start =================-->
   <section class="hero-banner hero-banner-sm">
     <div class="container text-center">
@@ -117,6 +117,7 @@
           $new_pro = array(
             "fee" => $_POST['paid'] = $paidFee,
             "name" => $_POST['name'],
+            "sponsor_id" => $_POST['sponsor'],
             "Professional_id" => $_POST['pid'] = $pid
           );
           $query = sprintf("INSERT INTO %s (%s) values (%s)",
@@ -138,6 +139,9 @@
         <form method="post">
             <label for="name">Professional's Name</label>
             <input type="text" name="name" id="name">
+            <br>
+            <label for="sponsor">Sponsor's ID</label>
+            <input type="text" name="sponsor" id="sponsor">
             <br>
         <label for='fee'>Did Professional Pay? </label>
             <select name="paid">
@@ -183,27 +187,27 @@
                   <li><a href="jobs.php">Jobs</a></li>
                   <li><a href="contact.html">Contact</a></li>
                 </ul>
-              </div>										
-            </div>							
+              </div>
+            </div>
           </div>
-        </div>							
+        </div>
         <div class="col-lg-3  col-md-6 col-sm-6">
           <div class="single-footer-widget">
             <h6>Newsletter</h6>
             <p>
-              Join to receive to stay up-to-date on the latest news a							
-            </p>								
+              Join to receive to stay up-to-date on the latest news a
+            </p>
             <div id="mc_embed_signup">
               <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscription relative">
                 <div class="input-group d-flex flex-row">
                   <input name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" required="" type="email">
-                  <button class="btn bb-btn"><span class="lnr lnr-location"></span></button>		
-                </div>									
+                  <button class="btn bb-btn"><span class="lnr lnr-location"></span></button>
+                </div>
                 <div class="mt-10 info"></div>
               </form>
             </div>
           </div>
-        </div>						
+        </div>
       </div>
     </div>
     <div class="footer-bottom">
@@ -232,7 +236,7 @@
   <script src="js/jquery.ajaxchimp.min.js"></script>
   <script src="js/mail-script.js"></script>
   <script src="js/countdown.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>	
+  <script src="js/jquery.magnific-popup.min.js"></script>
   <script src="js/main.js"></script>
 
 
